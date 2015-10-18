@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nkwh.mathilde.ui.preferences.UIPLangSetsController">
+   <children>
+      <Region prefHeight="20.0" prefWidth="20.0" />
+      <Label fx:id="lblLang" prefHeight="19.0" prefWidth="74.0" text="Language">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbLangs" prefWidth="150.0" promptText="Language" />
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="50.0" />
+   </padding>
+</HBox>
