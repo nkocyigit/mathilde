@@ -53,7 +53,7 @@ public class UIPreferencesController extends BorderPane implements Initializable
 	{
 		try
 		{		
-			TreeItem<String> itemDummyRoot = new TreeItem<String>("");
+			final TreeItem<String> itemDummyRoot = new TreeItem<String>("");
 			itemGeneralRoot = new TreeItem<String>
 				(InternationalizationManager.getResourceBundle().getString("str_general"));
 		    itemGeneralLang = new TreeItem<String>
