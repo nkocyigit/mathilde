@@ -13,6 +13,7 @@ import com.nkwh.mathilde.core.event.events.AppEventLangUpdate;
 import com.nkwh.mathilde.core.injector.CoreModuleInjector;
 import com.nkwh.mathilde.res.InternationalizationManager;
 import com.nkwh.mathilde.ui.ILangChangeUpdate;
+import com.nkwh.mathilde.ui.commands.impl.UICommandShowLangPreferences;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -56,8 +57,9 @@ public class UIPreferencesController extends BorderPane implements Initializable
 			final TreeItem<String> itemDummyRoot = new TreeItem<String>("");
 			itemGeneralRoot = new TreeItem<String>
 				(InternationalizationManager.getResourceBundle().getString("str_general"));
-		    itemGeneralLang = new TreeItem<String>
-		    	(InternationalizationManager.getResourceBundle().getString("str_lang"));
+		    itemGeneralLang = new TreeItemPreferences
+		    	(InternationalizationManager.getResourceBundle().getString("str_lang"), 
+		    	 new UICommandShowLangPreferences(borderPanePreferences));
 		    itemGeneralRoot.getChildren().add(itemGeneralLang);		    
 		    treePreferences.setRoot(itemDummyRoot);		    
 		    
@@ -70,37 +72,12 @@ public class UIPreferencesController extends BorderPane implements Initializable
 				public void changed(ObservableValue observable, Object oldValue, Object newValue) 
 		    	{
 					TreeItem<String> selectedItem = (TreeItem<String>) newValue;
-					System.out.println("Selected Text : " + selectedItem.getValue());
+					if(selectedItem instanceof TreeItemPreferences)
+						((TreeItemPreferences)selectedItem).getUICommand().runCommand();
 				}		    	
 			});
 		}
 		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-	
-	private void addLangSets()
-	{
-		try 
-		{
-			final Injector injector = CoreModuleInjector.getInjector();
-			
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/nkwh/mathilde/ui/preferences/UIPLangSets.fxml"));
-			
-			loader.setControllerFactory(new Callback<Class<?>, Object>() 
-			{				
-				public Object call(Class<?> type) 
-				{
-					return injector.getInstance(type);
-				}
-			});
-						
-			HBox pane = loader.<HBox>load();
-			pane.setPadding(borderPanePreferences.getInsets());
-			borderPanePreferences.setCenter(pane);
-		} 
-		catch (IOException e) 
 		{
 			e.printStackTrace();
 		}
