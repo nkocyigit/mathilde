@@ -9,5 +9,5 @@ package com.nkwh.mathilde.ui;
 
 public interface ILangChangeUpdate 
 {
-	void updateControlsLanguage();
+	void updateUIControlsLanguage();
 }

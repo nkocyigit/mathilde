@@ -84,7 +84,7 @@ public class UIPreferencesController extends BorderPane implements Initializable
 	}
 
 	@Override
-	public void updateControlsLanguage() 
+	public void updateUIControlsLanguage() 
 	{
 		itemGeneralRoot.setValue(InternationalizationManager.getResourceBundle().getString("str_general"));
 		itemGeneralLang.setValue(InternationalizationManager.getResourceBundle().getString("str_lang"));
@@ -93,6 +93,6 @@ public class UIPreferencesController extends BorderPane implements Initializable
 	@Subscribe
 	public void appLangChanged(AppEventLangUpdate e)
 	{
-		updateControlsLanguage();
+		updateUIControlsLanguage();
 	}
 }

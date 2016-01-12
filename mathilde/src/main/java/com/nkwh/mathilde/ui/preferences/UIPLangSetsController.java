@@ -65,7 +65,7 @@ public final class UIPLangSetsController implements Initializable,ILangChangeUpd
 	}
 
 	@Override
-	public void updateControlsLanguage() 
+	public void updateUIControlsLanguage() 
 	{
 		lblLang.setText(InternationalizationManager.getResourceBundle().getString("str_lang"));
 		cmbLangs.setPromptText(InternationalizationManager.getResourceBundle().getString("str_lang"));
@@ -75,6 +75,6 @@ public final class UIPLangSetsController implements Initializable,ILangChangeUpd
 	@Subscribe
 	public void appLangChanged(AppEventLangUpdate e)
 	{
-		updateControlsLanguage();
+		updateUIControlsLanguage();
 	}	
 }

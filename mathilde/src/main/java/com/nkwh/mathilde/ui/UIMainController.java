@@ -1,5 +1,6 @@
 package com.nkwh.mathilde.ui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -12,7 +13,9 @@ import com.nkwh.mathilde.core.event.events.AppEventLangUpdate;
 import com.nkwh.mathilde.core.injector.CoreModuleInjector;
 import com.nkwh.mathilde.res.AppConstants;
 import com.nkwh.mathilde.res.InternationalizationManager;
+import com.nkwh.mathilde.ui.designcanvas.CanvasProjectDesign;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -35,6 +39,8 @@ public final class UIMainController implements Initializable,ILangChangeUpdate
 	private Menu mnFile,mnEdit,mnHelp;
 	@FXML
 	private MenuItem mnItemClose,mnItemPreferences,mnItemAbout;
+	@FXML
+	private AnchorPane paneDesignArea;
 	
 	@Inject
 	public UIMainController(Provider<EventBus> eventBusProvider)
@@ -52,6 +58,19 @@ public final class UIMainController implements Initializable,ILangChangeUpdate
 		mnItemClose.setText(InternationalizationManager.getResourceBundle().getString("str_close"));
 		mnItemPreferences.setText(InternationalizationManager.getResourceBundle().getString("str_preferences"));
 		mnItemAbout.setText(InternationalizationManager.getResourceBundle().getString("str_about"));
+		
+		CanvasProjectDesign canvasProjectDesign = new CanvasProjectDesign();
+		canvasProjectDesign.setWidth(300);
+		canvasProjectDesign.setHeight(250);
+		AnchorPane.setTopAnchor(canvasProjectDesign, 0d);
+		AnchorPane.setBottomAnchor(canvasProjectDesign, 0d);
+		AnchorPane.setLeftAnchor(canvasProjectDesign, 0d);
+		AnchorPane.setRightAnchor(canvasProjectDesign, 0d);
+		paneDesignArea.getChildren().add(canvasProjectDesign);
+		canvasProjectDesign.widthProperty().bind(paneDesignArea.widthProperty());
+		canvasProjectDesign.heightProperty().bind(paneDesignArea.heightProperty());
+		paneDesignArea.setVisible(true);
+		canvasProjectDesign.drawShapes();
 	}
 	
 	public void menuItemPreferencesClicked()
@@ -93,8 +112,14 @@ public final class UIMainController implements Initializable,ILangChangeUpdate
 		}
 	}
 	
+	public void menuItemCloseClicked()
+	{
+		Platform.exit();
+	    System.exit(0);
+	}
+	
 	@Override
-	public void updateControlsLanguage() 
+	public void updateUIControlsLanguage() 
 	{
 		_stagePreferences.setTitle(InternationalizationManager.getResourceBundle().getString("str_preferences"));
 		mnFile.setText(InternationalizationManager.getResourceBundle().getString("str_file"));
@@ -108,6 +133,6 @@ public final class UIMainController implements Initializable,ILangChangeUpdate
 	@Subscribe
 	public void appLangChanged(AppEventLangUpdate e)
 	{
-		updateControlsLanguage();
+		updateUIControlsLanguage();
 	}
 }

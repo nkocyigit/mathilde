@@ -7,14 +7,52 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nkwh.mathilde.ui.UIMainController">
    <center>
-      <BorderPane id="paneMain" prefHeight="600.0" prefWidth="750.0" BorderPane.alignment="CENTER" />
+      <BorderPane id="paneMain" prefHeight="600.0" prefWidth="750.0" BorderPane.alignment="CENTER">
+         <center>
+            <SplitPane dividerPositions="0.1" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <Accordion layoutY="126.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <panes>
+                            <TitledPane animated="false" text="Test1">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                              </content>
+                            </TitledPane>
+                            <TitledPane animated="false" text="Test2">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                              </content>
+                            </TitledPane>
+                            <TitledPane animated="false" text="Test3">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                              </content>
+                            </TitledPane>
+                          </panes>
+                        </Accordion>
+                     </children></AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <SplitPane dividerPositions="0.9060402684563759" layoutX="223.0" layoutY="258.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane fx:id="paneDesignArea" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </center></BorderPane>
    </center>
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu fx:id="mnFile" mnemonicParsing="false" text="File">
             <items>
-              <MenuItem fx:id="mnItemClose" mnemonicParsing="false" text="Close" />
+              <MenuItem fx:id="mnItemClose" mnemonicParsing="false" onAction="#menuItemCloseClicked" text="Close" />
             </items>
           </Menu>
           <Menu fx:id="mnEdit" mnemonicParsing="false" text="Edit" />
