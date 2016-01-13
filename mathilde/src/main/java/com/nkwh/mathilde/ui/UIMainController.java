@@ -1,6 +1,5 @@
 package com.nkwh.mathilde.ui;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -60,8 +59,6 @@ public final class UIMainController implements Initializable,ILangChangeUpdate
 		mnItemAbout.setText(InternationalizationManager.getResourceBundle().getString("str_about"));
 		
 		CanvasProjectDesign canvasProjectDesign = new CanvasProjectDesign();
-		canvasProjectDesign.setWidth(300);
-		canvasProjectDesign.setHeight(250);
 		AnchorPane.setTopAnchor(canvasProjectDesign, 0d);
 		AnchorPane.setBottomAnchor(canvasProjectDesign, 0d);
 		AnchorPane.setLeftAnchor(canvasProjectDesign, 0d);
